@@ -3,15 +3,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import GridBlocks from './GridBlocks'
 import SnakeLayer from './SnakeLayer'
 import FoodLayer from './FoodLayer'
-import { moveSnake, setDirection, setGridSize, restartGame } from '../store/reducers/snakeSlice'
+import { moveSnake, setDirection, setGridSize, restartGame, tickTimer } from '../store/reducers/snakeSlice'
 import { Spinner } from './ui/8bit/spinner'
+import { LiquidButton } from './animate-ui/components/buttons/liquid'
 
 
 const GridBox = () => {
     const boxRef = useRef(null)
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-    const status = useSelector(state => state.snake.status)
+    const { status, highScore } = useSelector(state => state.snake)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (status === 'playing') {
+            const timerInterval = setInterval(() => {
+                dispatch(tickTimer());
+            }, 1000);
+            return () => clearInterval(timerInterval);
+        }
+    }, [status, dispatch]);
+
+    useEffect(() => {
+        if (highScore > 0) {
+            localStorage.setItem("snakeHighScore", highScore);
+        }
+    }, [highScore]);
 
     useEffect(() => {
         if (!boxRef.current) return
@@ -82,7 +98,6 @@ const GridBox = () => {
             <SnakeLayer cellSize={cellSize} />
             <FoodLayer cellSize={cellSize} />
 
-            {/* Game Over Overlay */}
             {status === 'game_over' && (
                 <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-10">
                     <h2 className="text-6xl text-(--Accent_Color) font-pixel mb-4">GAME OVER</h2>
@@ -93,6 +108,13 @@ const GridBox = () => {
                         <Spinner variant="classic" className="size-8" />
                         RESTART
                     </button>
+                </div>
+            )}
+
+            {status === 'Starting' && (
+                <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center z-10">
+                    <h2 className="text-6xl text-(--Accent_Color) font-pixel mb-4">Click Start to Begin</h2>
+                    <LiquidButton size="lg" variant="ghost" className="text-3xl font-pixel" onClick={() => dispatch(restartGame())}>START</LiquidButton>
                 </div>
             )}
         </div>
