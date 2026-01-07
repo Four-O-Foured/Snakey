@@ -1,16 +1,56 @@
-# React + Vite
+# Snakey 🐍
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A classic Snake game built with modern web technologies, featuring a sleek UI and smooth gameplay.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Smooth Gameplay**: Optimized snake movement and collision detection.
+- **Score Tracking**: Keep track of your current score as you play.
+- **Modern UI**: Styled with **Tailwind CSS** for a clean and responsive design.
+- **State Management**: Game state controlled efficiently using **Redux Toolkit**.
+- **Interactive Components**: Built with reusable React components.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **[React](https://react.dev/)** - UI Library
+- **[Vite](https://vitejs.dev/)** - Build Tool
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS Framework
+- **[Redux Toolkit](https://redux-toolkit.js.org/)** - State Management
+- **[Lucide React](https://lucide.dev/)** - Icons
 
-## Expanding the ESLint configuration
+## 🏁 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Follow these steps to set up the project locally.
+
+### Prerequisites
+
+Ensure you have Node.js installed on your machine.
+
+### Installation
+
+1.  **Clone the repository** (if applicable) or navigate to the project directory.
+
+2.  **Install dependencies**:
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**:
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open in Browser**:
+    Click the link provided in the terminal (usually `http://localhost:5173/`) to play the game!
+
+## 📦 Building for Production
+
+To create an optimized build for deployment:
+
+```bash
+npm run build
+```
+
+The output will be in the `dist` directory.
